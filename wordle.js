@@ -158,10 +158,8 @@ function main() {
   filteredWords.sort(sortFunc);
 
   if (filteredWords.length > 0) {
-    const topTen = filteredWords.slice(0, 10);
-    console.log(
-      topTen.map((word, index) => `${index + 1}) ${word}`).join("\n")
-    );
+    const word = filteredWords[0];
+    console.log(`${word}\n\n${dictionary[word]}`);
   } else {
     console.log("No words found");
   }
