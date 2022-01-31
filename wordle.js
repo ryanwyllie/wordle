@@ -1,10 +1,10 @@
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 const argv = yargs(hideBin(process.argv)).argv;
-const dictionary = require("./dictionary.json");
+//const dictionary = require("./dictionary.json");
 
-const allWords = Object.keys(dictionary);
-const length = argv.length || 5;
+const allWords = require("./words.json");
+const length = 5;
 const exclude = argv.exclude ? argv.exclude.split(",") : [];
 const excludeRegex = exclude.length
   ? new RegExp(`^[^${exclude.join("")}]+$`)
@@ -158,8 +158,12 @@ function main() {
   filteredWords.sort(sortFunc);
 
   if (filteredWords.length > 0) {
-    const word = filteredWords[0];
-    console.log(`${word}\n\n${dictionary[word]}`);
+    const topTen = filteredWords.slice(0, 10);
+    console.log(
+      topTen
+        .map((word, index) => `${index + 1}) ${word} - ${wordValues[word]}`)
+        .join("\n")
+    );
   } else {
     console.log("No words found");
   }
