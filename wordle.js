@@ -10,7 +10,7 @@ const excludeRegex = exclude.length
   ? new RegExp(`^[^${exclude.join("")}]+$`)
   : null;
 const include = argv.include ? argv.include.split(",") : [];
-const includeRegex = argv.include
+const includeRegex = include.length
   ? new RegExp(`^${include.map((c) => `(?=.*${c})`).join("")}.+`)
   : null;
 const order = argv.order
